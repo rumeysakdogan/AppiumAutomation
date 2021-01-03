@@ -12,9 +12,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Driver {
-
     private static AppiumDriver<MobileElement> driver;
-    private static DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+    private static final DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
     private final static String ANDROID_APP_URL = ConfigurationReader.getProperty("android.app.url");
     private final static Logger logger = Logger.getLogger(Driver.class);
 
@@ -41,8 +40,6 @@ public class Driver {
                 case "ios":
                     desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "IOS");
                     desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13.0");
-//                    we need to have ipa app for IOS, not apk
-//                    desiredCapabilities.setCapability(MobileCapabilityType.APP, ANDROID_APP_URL);
                     desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Iphone X");
                     desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
                     try {
@@ -57,5 +54,12 @@ public class Driver {
             }
         }
         return driver;
+    }
+
+    public static void closeDriver() {
+        if (driver != null) {
+            driver.closeApp();
+            driver = null;
+        }
     }
 }
