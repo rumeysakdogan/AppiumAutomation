@@ -37,6 +37,8 @@ public class CalculatorTest {
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"com.android.calculator2");
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.android.calculator2.Calculator");
+        // for native apps we need to specify app-package and app-activity
+        // for newly downloaded apps, instead app-package,app-activity , we will specify app with .apk
         //for new apps - just use "app"
         //for pre-installed - "appPackage" amd "appActivity"
         //address of appium server
